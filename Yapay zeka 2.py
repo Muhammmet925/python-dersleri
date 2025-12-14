@@ -217,3 +217,68 @@ class ChatBot:
         # 5. Varsayılan Yanıt
         # return random.choice(self.responses["varsayılan"])
         return random.choice(self.responses["varsayılan"])
+    
+# ... (Ana program ve diğer kodlar)         
+# --- ANA PROGRAM ---    
+
+def main():
+    robot_name = "Vekto"
+    robot_emotion = Emotion.CALM 
+    
+    # ChatBot başlatılıyor (1000 bilgi yüklemesi burada yapılır)
+    chatbot = ChatBot(robot_name) 
+
+    # Robotun Mevcut Durumu (Simüle edilmiş sensör verileri)
+    robot_status = {
+        'battery': random.randint(10, 100), 
+        'person_detected': random.choice([True, False]) 
+    }
+
+    # Açılış mesajı
+    print("\n" + "="*70)
+    print(f"\033[1;36m>> {robot_name} v1.2 Yapay Zeka Simülasyonu Başlatıldı. <<\033[0m")
+    print(f"Başlangıç Pil: %{robot_status['battery']}, Çevre Algısı: {'İnsan Var' if robot_status['person_detected'] else 'Kimse Yok'}")
+    print("\n\033[1;37mÖrnek Komutlar:\033[0m yeteneklerin neler, nasılsın, hesapla: 25*12, bilgi 44, pil seviyen kaç")
+    print("Çıkmak için **'çıkış'** yazın.")
+    print("="*70 + "\n")
+
+    # Kullanıcı ile Etkileşim Döngüsü
+    while True:
+        try:
+            user_input = input("\033[1;33mSen:\033[0m ")
+        except EOFError:
+            break
+            
+        if user_input.lower() in ["çıkış", "kapat", "görüşürüz"]:
+            print(f"\n{robot_name}: Görüşürüz! İyi günler!")
+            break
+
+        time.sleep(0.5) 
+
+        # Kullanıcı girdisini işle
+        response = chatbot.process_input(user_input, robot_emotion, robot_status)
+        
+        # Yanıtı ekrana bas
+        print(f"\033[1;36m{robot_name}:\033[0m {response}")
+if __name__ == "__main__":
+    main()
+    robot_name = "Vekto"
+    robot_emotion = Emotion.CALM
+    chatbot = ChatBot(robot_name)
+    robot_status = {
+        'battery': 85,  
+        'person_detected': True
+    }
+    test_inputs = [
+        "hesapla: 15 + 27 * 2",
+        "100'ün %20'si kaç eder?",
+        "5 * (3 + 2)",
+        "hesapla: 10 / 0",  
+        "hesapla: 5 + abc",  
+        "Ne yapabilirsin?"
+    ]
+    for input_text in test_inputs:
+        print(f"\n\033[1;33mSen:\033[0m {input_text}")
+        response = chatbot.process_input(input_text, robot_emotion, robot_status)
+        print(f"\033[1;36m{robot_name}:\033[0m {response}")
+
