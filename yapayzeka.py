@@ -878,5 +878,3 @@ print('sonuç',ortalama)
 if ortalama>65:                 
   print('geçtin')   
 else :print('kaldın')  
-
-    
