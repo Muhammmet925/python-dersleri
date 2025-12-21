@@ -12,7 +12,7 @@ print("║    Seçimiz nedir?   ║")
 print("╚═════════════════════╝")
 # 201 ╔ # 205 ═ # 187 ╗ # 186 ║ # 200 ╚ # 188 ╝
 secim=input("Seçiminiz:")
-if secim=="1":  
+if secim=="1": 
     print("Toplama seçtiniz.")
     a=int(input("Birinci sayıyı giriniz:"))
     b=int(input("İkinci sayıyı giriniz:"))
